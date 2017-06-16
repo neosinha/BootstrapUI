@@ -1,0 +1,28 @@
+@media (min-width: 768px) {
+    .form-inline .radio input[type="radio"], 
+    .form-inline .checkbox input[type="checkbox"] {
+        float: left;
+        margin-right: 5px;
+    }
+}
+
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+	/* position: relative; */
+	margin-top: -16px;
+	margin-left: -20px;
+}
+
+
+.brand {
+	font-family: 'Indie Flower', cursive; 
+	font-size: 48px; 
+	color: rgb(247, 218, 100);
+}
+
+.navbar {
+	background-color :  #deeaee;
+}
+
+.jumbotron {
+	background-color :  #deeaee;
+}
