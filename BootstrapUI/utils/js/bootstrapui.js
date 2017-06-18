@@ -410,16 +410,16 @@ var Bootstrap  = function () {
 			lbl = this.createElement(null, 'label');
 			lbl.innerHTML = radio['label'];
 			
-			if (inline)
+			if (inline) {
 				lbl.setAttribute('class', 'radio-inline');
-			else
+			} else {
 				lbl.setAttribute('class', 'radio');
 			}
 			lbl.appendChild(inp);
 			chboxgrp.appendChild(lbl);
 		}	    
 		return chboxgrp; 
-	}
+	};
 
 	
 	
