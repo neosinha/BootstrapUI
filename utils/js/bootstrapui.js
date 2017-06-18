@@ -318,9 +318,6 @@ var Bootstrap  = function () {
 		if (inputdef['type'] == "checkbox" ) {
 			 inp.setAttribute('class', 'checkbox inline');
 			 lbl.appendChild(inp);
-		} else if (inputdef['type'] == "radio" ) {
-				 inp.setAttribute('class', 'radio');
-				 lbl.appendChild(inp);
 		} else {
 			p.appendChild(inp);
 		}
@@ -401,6 +398,31 @@ var Bootstrap  = function () {
 		return chboxgrp; 
 	}
 
+
+	this.createRadioBoxes = function (id, inline,radios) {
+		chboxgrp = this.createElement(id+'radios', 'div');
+		for (i=0; i < radios.length; i++) {
+			radio = radios[i];
+			id = radios['id']; 
+			inp = this.createElement(null, 'input');
+			inp.setAttribute('type', 'radio');
+			inp.setAttribute('name', id+'lradios');
+			lbl = this.createElement(null, 'label');
+			lbl.innerHTML = radio['label'];
+			
+			if (inline)
+				lbl.setAttribute('class', 'radio-inline');
+			else
+				lbl.setAttribute('class', 'radio');
+			}
+			lbl.appendChild(inp);
+			chboxgrp.appendChild(lbl);
+		}	    
+		return chboxgrp; 
+	}
+
+	
+	
 	
 	this.createNotification = function(alerttype, msg) {
 		div = this.createElement('div', null);
