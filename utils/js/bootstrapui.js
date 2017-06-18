@@ -318,6 +318,9 @@ var Bootstrap  = function () {
 		if (inputdef['type'] == "checkbox" ) {
 			 inp.setAttribute('class', 'checkbox inline');
 			 lbl.appendChild(inp);
+		} else if (inputdef['type'] == "radio" ) {
+				 inp.setAttribute('class', 'radio inline');
+				 lbl.appendChild(inp);
 		} else {
 			p.appendChild(inp);
 		}
