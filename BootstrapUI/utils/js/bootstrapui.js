@@ -23,7 +23,10 @@ var Bootstrap  = function () {
 		el.setAttribute('class', 'well');
 		
 		if (content) {
-			el.appendChild(content);
+			for (i=0; i < content.length; i++) {
+				ctx = content[i];
+				el.appendChild(ctx);
+			}
 		}
 		return el; 
 	}
