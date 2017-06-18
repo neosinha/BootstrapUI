@@ -18,6 +18,16 @@ var Bootstrap  = function () {
 		return el; 
 	}; 
 
+	this.well = function (id, content) {
+		el = this.createElement('div', id);
+		el.setAttribute('class', 'well');
+		
+		if (content) {
+			el.appendChild(content);
+		}
+		return el; 
+	}
+	
 	
 	this.jumbotron = function (id, content) {
 		el = this.createElement('div', id);
