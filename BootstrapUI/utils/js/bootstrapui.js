@@ -444,11 +444,12 @@ var Bootstrap  = function () {
 			if (listFunction) {
 				ach.setAttribute('onclick', listFunction+'(\''+i+'\');');
 			}
+			lgroup.appendChild(ach);
 		}
 		
 		
-		
-	}
+		return lgroup; 
+	}; 
 	
 	
 	
