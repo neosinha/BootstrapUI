@@ -421,6 +421,34 @@ var Bootstrap  = function () {
 		return chboxgrp; 
 	};
 
+	this.createListGroup = function(id, listFunction, listArr) {
+		/*<div class="list-group">
+		  <a href="#" class="list-group-item">First item</a>
+		  <a href="#" class="list-group-item">Second item</a>
+		  <a href="#" class="list-group-item">Third item</a>
+		</div>*/
+		lgroup = this.createElement(id, 'div');
+		lgroup.setAttribute('class', 'list-group');
+		
+		for (i=0; i < listArr.length; i++) {
+			listEl = listArr[i]; 
+			ach = this.createElement(id+'_el'+i, 'a');
+			ach.innerHTML = listEl['content'];
+			ach.setAttribute('href', 'javascript:null');
+			if (ach['type']) {
+				ach.setAttribute('class', 'list-group-item '+ type);
+			} else {
+				ach.setAttribute('class', 'list-group-item');
+			}
+			
+			if (listFunction) {
+				ach.setAttribute('onclick', listFunction+'(\''+i+'\');');
+			}
+		}
+		
+		
+		
+	}
 	
 	
 	
