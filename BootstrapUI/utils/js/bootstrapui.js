@@ -30,7 +30,7 @@ var Utils = function () {
 var Bootstrap  = function () {
 	
 	this.balert = function(msg) {
-		console.log('Bootstrap alert');
+		console.log('BS: '+ msg);
 		alert(msg);
 	}; 
 		
@@ -66,6 +66,11 @@ var Bootstrap  = function () {
 		console.log('Jumbo: '+ JSON.stringify(el));
 		return el
 	}; 
+	
+	
+	this.modal = function (id, content) {
+		
+	}
 	
 	this.button = function (id, name, onclick) {
 		el = this.createElement('button', id);
@@ -272,6 +277,7 @@ var Bootstrap  = function () {
 		return el;
 	}; 
 	
+	
 	this.navbar = function(id, banner) {
 		nav = this.createElement('nav', null);
 		nav.setAttribute('class', 'navbar navbar-default');
@@ -290,6 +296,30 @@ var Bootstrap  = function () {
 		
 		return nav;
 	}
+	
+	
+	this.navigationbar = function(id, left, center, right) {
+		nav = this.createElement('nav', null);
+		nav.setAttribute('class', 'navbar navbar-default');
+			cont = this.createElement('div', null);
+			cont.setAttribute('class', 'container');
+			
+				nheader = this.createElement('div', null);
+				nheader.setAttribute('class', 'navbar-header');
+					an = this.createElement('a');
+					an.setAttribute('class','brand navbar-brand');
+					an.innerHTML = left.banner; 
+				
+					nheader.appendChild(an); 
+				cont.appendChild(nheader);
+		nav.appendChild(cont);
+		
+		return nav;
+	}
+	
+	
+	
+	
 	
 	this.createFormElement = function(id, inputdef) {
 		//label, inputtype, placeholder, value) {
