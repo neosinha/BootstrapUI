@@ -11,6 +11,17 @@ BootstrapUI Framework,
 
 Example: The main app would like,  
 ```html
+<head>
+<!--  BootstrapUI JS     -->
+ <script src="https://api.sinhallc.com/uifiles/utils/js/bootstrapui.js"></script>
+ 
+ 
+ <!--  Application Logic -->
+ <script src="js/app.js"></script>
+ 
+ <!--  All stacked views are defined in this file     -->
+ <script src="js/views.app.js"></script>
+ </head>
 <body id = "mainbody">
  	<!--  Placeholder tags -->
 	<div class="container" id="mcontent"></div>
@@ -21,8 +32,9 @@ Example: The main app would like,
 		appInit();
 	</script>
 </body>
-</html>
 
 ```
+
+
 
 
