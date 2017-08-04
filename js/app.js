@@ -11,7 +11,6 @@ function loadLandingView() {
 		jum = ui.jumbotron('view1', h1x,' bg-basic'); 
 		
 		
-		
 		//create tab area
 		tabs = new Array();
 		tabs.push({'name' : "Login" , 'content' : loginForm()});
@@ -24,10 +23,6 @@ function loadLandingView() {
 		jum.appendChild(notifyarea);
 		
 		
-		//loginview = ui.addSubView(jum, navtabs);
-		
-		//showView([navbar, jum]);
-		//view = ui.addSubViewById('mcontent', [loginview]);
 		ui.addSubViewToMain([jum]);
 	}
 
