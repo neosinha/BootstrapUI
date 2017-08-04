@@ -78,10 +78,6 @@ var Bootstrap  = function () {
 	};
 	
 	this.createPanels = function (id, panelArr) {
-		/*<div class="panel-group">
-		  <div class="panel panel-default">
-		    <div class="panel-body">Panel Content</div>
-		  </div>*/
 		
 		pgroup = this.createElement('div', id);
 		pgroup.setAttribute('class', 'panel-group');
@@ -479,17 +475,20 @@ var Bootstrap  = function () {
 	};
 
 	this.createListGroup = function(id, listFunction, listArr) {
-		/*<div class="list-group">
-		  <a href="#" class="list-group-item">First item</a>
-		  <a href="#" class="list-group-item">Second item</a>
-		  <a href="#" class="list-group-item">Third item</a>
-		</div>*/
 		lgroup = this.createElement(id, 'div');
 		lgroup.setAttribute('class', 'list-group');
 		
 		for (i=0; i < listArr.length; i++) {
 			listEl = listArr[i]; 
 			ach = this.createElement(id+'_el'+i, 'a');
+			
+			if (typeof listEl['content'] == 'string') {
+				ach.innerHTML = listEl['content']; 
+			} else {
+				ach.appendChild(listEl['content']); 
+			}
+			
+			
 			ach.innerHTML = listEl['content'];
 			ach.setAttribute('href', 'javascript:null');
 			if (ach['type']) {

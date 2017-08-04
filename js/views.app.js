@@ -7,6 +7,16 @@ function appNavBar() {
 	ui.addSubViewToMain([navbar]);
 }
 
+function loadPanels() {
+	px = new Array(); 
+	px.push({'type': 'default', 'heading': 'Panel1', 'content': 'Panel1 Content'});
+	
+	panel = ui.createPanels('uipanel', px);
+	
+	return panel;
+}
+
+
 function registerForm() {
 	
 	inpx = new Array();
@@ -71,6 +81,8 @@ function loginForm() {
 	
 	return form1; 
 }
+
+
 
 
 

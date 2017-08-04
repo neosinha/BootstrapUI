@@ -15,6 +15,8 @@ function loadLandingView() {
 		tabs = new Array();
 		tabs.push({'name' : "Login" , 'content' : loginForm()});
 		tabs.push({'name' : "Register" ,'content' : registerForm()});
+		tabs.push({'name' : "Panel" ,'content' : loadPanels()});
+		
 		navtabs= ui.navtabs('tabbed', 'justified bg-basic text-warning', tabs);
 		
 		notifyarea = ui.createElement('div', 'notify');
