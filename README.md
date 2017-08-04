@@ -9,6 +9,8 @@ BootstrapUI Framework,
 2. does not ask you to write HTML which is then processed through CSS or Javascript. 
 3. It sits on top of Bootstrap Framework. 
 
+At present only a few UI elements have been developed but the list is growing rapidly. 
+
 Example: The main app would like,  
 ```html
 <head>
@@ -166,6 +168,7 @@ function loginView() {
 
 ```
 
+That's it.. Spend your time in developing views quickly. 
 
 
 
