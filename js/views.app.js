@@ -1,6 +1,11 @@
 // file holds the code which designs the UI views
 // or bigger/composite UI view elements
+ui = new Bootstrap();
 
+function appNavBar() {
+	navbar = ui.navbar("navarea", 'App Company');
+	ui.addSubViewToMain([navbar]);
+}
 
 function registerForm() {
 	
@@ -28,7 +33,7 @@ function registerForm() {
 		'name' : 'Register',
 		'value': 'Register', 
 		'class': 'btn-info', 
-		'onclick': 'register();', 
+		'onclick': 'register();', //call a function to perform registeration
 		'placeholder': "Register"});
 		
 	form1 = ui.createForm('registerform', inpx);
@@ -39,7 +44,7 @@ function registerForm() {
 
 
 
-function designLoginForm() {
+function loginForm() {
 
 	inpx = new Array();
 	inpx.push({'label' : "User Name", 
@@ -90,32 +95,6 @@ function loginView() {
 	//showView([navbar, jum]);
 	//view = ui.addSubViewById('mcontent', [loginview]);
 	ui.addSubViewToMain([jum]);
-}
-
-function appNavBar() {
-	navbar = ui.navbar("navarea", 'SDOMUS');
-	ui.addSubViewToMain([navbar]);
-}
-
-
-function relayConfigView() {
-	
-	inpx = new Array();
-	inpx.push({'label' : "Relay 10A", 
-			'type' : "checkbox", 
-			'id'	: 'relay1',
-			'name' : 'usernamex',
-			'placeholder': "Device"});
-		
-	inpx.push({'label' : "Relay 20A", 
-		'type' : "checkbox", 
-		'id'	: 'usernamex',
-		'name' : 'usernamex',
-		'placeholder': "Device"});
-	
-	form1 = ui.createForm('dconfigview', inpx);
-	
-	return form1; 
 }
 
 
