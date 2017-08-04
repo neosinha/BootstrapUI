@@ -1,13 +1,18 @@
 # Bootstrap UI
 Generating Dynamic HTML UI with Bootstrap framework. 
 
-Have you been in a situation in which you need to build a UI or MVC but are dragged into learning some big framework or some new technology completely? I have found myself juggling between iOS/Java/HTML/Angular and different types of HTML frameworks. There are a lot of frameworks which produce responsive web-pages and are mobile ready. However, only a few come close to Bootstrap. This framework is really simple, very complete and very well supported. 
-However, as an app developer, I find myself struggling to keep up with layout and alignment changes. I just found it very difficult to keep writing regular HTML or just remembering the bootstrap classes or structure. Almost all framework suffer from the "class" blow-up problem, making you keep the documentation page open always. 
+Have you been in a situation where you needed to build a UI but have been dragged into learning some big framework or some new technology completely? As a technology enthusiast, UI is just a part of what I need to do. It is a very important one though, as it is the tool by which users consume the technology or application.
+I have found myself juggling between iOS/Java/HTML/Angular and different types of HTML frameworks. There are a lot of frameworks which produce responsive web-pages and are mobile ready. However, only a few come close to Bootstrap. This framework is really simple, complete and very well supported. 
+To accomplish this, I find myself struggling to keep up with layout and alignment changes too early in the app design process. This significantly slows down the progress. I just found it very difficult to keep writing regular HTML or just remembering the bootstrap classes or structure. Almost all framework suffer from the "class" blow-up problem, making you keep the documentation page open always. 
+
+One of my requirements is that the UI Framework needs have programatic support. JqueryMobile comes close but the CSS manipulations slow the framework down. 
 
 BootstrapUI Framework,
-1. brings the power of DOM manipulations to Javascript/TypeScript to very fast UI implementations. 
-2. does not ask you to write HTML which is then processed through CSS or Javascript. 
-3. It sits on top of Bootstrap Framework. 
+1. Sits on top Bootstap Framework 
+2. brings the power of DOM manipulations to Javascript/TypeScript to very fast UI implementations. 
+3. It does not ask you to write HTML which is then processed through CSS or Javascript. 
+4. would still allow you to overide CSS Elements 
+5. would allow you to add your own custom elements.
 
 At present only a few UI elements have been developed but the list is growing rapidly. 
 
