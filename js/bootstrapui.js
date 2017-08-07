@@ -507,11 +507,13 @@ var Bootstrap  = function () {
 				button.innerHTML = icon + htm;
 			}
 			
-			
 			if (listFunction) {
-				ach.setAttribute('onclick', listFunction+'(\''+i+'\');');
+				button.setAttribute('onclick', listFunction+'(\''+i+'\');');
 			}
-			lgroup.appendChild(ach);
+			
+				li.appendChild(button);
+			lgroup.appendChild(li);
+			
 		}
 		
 		
