@@ -499,12 +499,16 @@ var Bootstrap  = function () {
 			
 			if (typeof listEl['content'] == 'string') {
 				htm = listEl['content'];
+				span = this.createElement('span', id+'-span'+i);
+				span.innerHTML = htm; 
+				
 				icon = '';
 				if (listEl['icon']) {
 					icon = this.createElement('i', id+'icon'+i);
 					icon.setAttribute('class', 'fa ' + listEl['icon']+ ' fa-lg pull-left');
 				}
-				button.innerHTML = icon + htm;
+				button.appendChild(icon);
+				button.appendChild(span);
 			}
 			
 			if (listFunction) {
