@@ -477,27 +477,35 @@ var Bootstrap  = function () {
 	
 
 	this.createListGroupWithButtons = function(id, listFunction, listArr) {
-		lgroup = this.createElement('div', id);
+		lgroup = this.createElement('ul', id);
 		lgroup.setAttribute('class', 'list-group');
 		
 		for (i=0; i < listArr.length; i++) {
 			listEl = listArr[i]; 
-			ach = this.createElement('button', id+'_el'+i);
+			
+			li = this.createElement('li','litem'+i);
+			li.setAttribute('class', 'list-group-item');
+			
+			button = this.createElement('button', id+'_el'+i);
+			
+			if (listEl['type']) {
+				button.setAttribute('class', 'btn btn-lg btn-block btn-'+type); 
+			} else {
+				button.setAttribute('class', 'btn btn-lg btn-block btn-default'); 
+			}
+			
+			
+			
 			
 			if (typeof listEl['content'] == 'string') {
-				ach.innerHTML = listEl['content']; 
-			} else {
-				ach.appendChild(listEl['content']); 
+				htm = listEl['content']; 
+				if (listEl['icon']) {
+					icon = this.createElement('i', id+'icon'+i);
+					icon.setAttribute('class', 'fa ' + listEl['icon']+ ' fa-lg pull-left');
+				}
+				button.innerHTML = icon + htm;
 			}
 			
-			
-			ach.innerHTML = listEl['content'];
-			ach.setAttribute('href', 'javascript:null');
-			if (ach['type']) {
-				ach.setAttribute('class', 'list-group-item '+ type);
-			} else {
-				ach.setAttribute('class', 'list-group-item');
-			}
 			
 			if (listFunction) {
 				ach.setAttribute('onclick', listFunction+'(\''+i+'\');');
