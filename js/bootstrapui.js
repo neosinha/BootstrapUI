@@ -506,7 +506,7 @@ var Bootstrap  = function () {
 				icon = '';
 				if (listEl['icon']) {
 					icon = this.createElement('i', id+'icon'+i);
-					icon.setAttribute('class', 'fa ' + listEl['icon']+ ' fa-lg pull-left');
+					icon.setAttribute('class', listEl['icon']);
 					button.appendChild(icon);
 				}
 				button.appendChild(span);
