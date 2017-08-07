@@ -500,6 +500,7 @@ var Bootstrap  = function () {
 			if (typeof listEl['content'] == 'string') {
 				htm = listEl['content'];
 				span = this.createElement('span', id+'-span'+i);
+				span.setAttribute('class', 'pull-right');
 				span.innerHTML = htm; 
 				
 				icon = '';
