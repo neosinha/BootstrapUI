@@ -498,7 +498,8 @@ var Bootstrap  = function () {
 			
 			
 			if (typeof listEl['content'] == 'string') {
-				htm = listEl['content']; 
+				htm = listEl['content'];
+				icon = '';
 				if (listEl['icon']) {
 					icon = this.createElement('i', id+'icon'+i);
 					icon.setAttribute('class', 'fa ' + listEl['icon']+ ' fa-lg pull-left');
