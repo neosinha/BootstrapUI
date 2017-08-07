@@ -491,7 +491,7 @@ var Bootstrap  = function () {
 			if (listEl['type']) {
 				button.setAttribute('class', 'btn btn-lg btn-block btn-'+type); 
 			} else {
-				button.setAttribute('class', 'btn btn-lg btn-block btn-default'); 
+				button.setAttribute('class', 'btn btn-lg btn-block btn-basic'); 
 			}
 			
 			
