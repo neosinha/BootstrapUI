@@ -474,6 +474,41 @@ var Bootstrap  = function () {
 		return chboxgrp; 
 	};
 
+	
+
+	this.createListGroupWithButtons = function(id, listFunction, listArr) {
+		lgroup = this.createElement('div', id);
+		lgroup.setAttribute('class', 'list-group');
+		
+		for (i=0; i < listArr.length; i++) {
+			listEl = listArr[i]; 
+			ach = this.createElement('button', id+'_el'+i);
+			
+			if (typeof listEl['content'] == 'string') {
+				ach.innerHTML = listEl['content']; 
+			} else {
+				ach.appendChild(listEl['content']); 
+			}
+			
+			
+			ach.innerHTML = listEl['content'];
+			ach.setAttribute('href', 'javascript:null');
+			if (ach['type']) {
+				ach.setAttribute('class', 'list-group-item '+ type);
+			} else {
+				ach.setAttribute('class', 'list-group-item');
+			}
+			
+			if (listFunction) {
+				ach.setAttribute('onclick', listFunction+'(\''+i+'\');');
+			}
+			lgroup.appendChild(ach);
+		}
+		
+		
+		return lgroup; 
+	};
+	
 	this.createListGroup = function(id, listFunction, listArr) {
 		lgroup = this.createElement('div', id);
 		lgroup.setAttribute('class', 'list-group');
