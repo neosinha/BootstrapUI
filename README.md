@@ -176,7 +176,7 @@ function loginView() {
 
 ```
 
-That's it.. Spend your time in developing views quickly. 
+That's it.. Use your time in developing views or custom elements without writing HTML 
 
 
 
