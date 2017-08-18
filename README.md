@@ -49,7 +49,8 @@ function appInit() {
 	loadLandingView(); 
 }
 
-
+//Defines a View which is called LandingView
+//This view could be part of a modal or tab or just a page
 function loadLandingView() {
 		var h1x = ui.h3(null, 'Example UI', null);
 		jum = ui.jumbotron('view1', h1x,' bg-basic'); 
