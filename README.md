@@ -43,6 +43,7 @@ Example: The main app would be derived from a boiler-plate code(which can be ext
 Now, app.js would like 
 ```javascript
 
+//Entry point into the application
 function appInit() {
 	appNavBar();
 	loadLandingView(); 
