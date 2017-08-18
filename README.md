@@ -17,7 +17,7 @@ BootstrapUI Framework,
 
 At present a few UI elements have been developed but the list is growing rapidly. 
 
-Example: The main app would like,  
+Example: The main app would be derived from a boiler-plate code(which can be extended),  
 ```html
 <head>
 <!--  BootstrapUI JS     -->
