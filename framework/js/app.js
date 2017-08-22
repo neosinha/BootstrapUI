@@ -26,7 +26,7 @@ function loadLandingView() {
 		
 		
 		ui.addSubViewToMain([jum]);
-	}
+}
 
 	
 
