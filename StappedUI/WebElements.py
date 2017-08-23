@@ -5,8 +5,6 @@ Created on Aug 21, 2017
 '''
 
 import datetime
-import lxml
-from lxml.html import builder as HTM
 
 
 class JSFile(object):
@@ -142,41 +140,82 @@ class HtmlFile(object):
 
     html = None
     body = None
-    head = None
+    headTitle = None
+    headFoot = None
+    body = None
+    css = None
+    js = None
+
+    cssDef = None
+    jsDef = None
 
     def __init__(self, appName):
         """
         HTML file
         """
-        hx = '<html lang=\"en\">'
-        hx += " <head>"
-        hx += "   <title>" + appName + "</title>"
-        hx += "   <meta charset=\"utf-8\">"
-        hx += "   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
-        hx += '   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lato|Oswald|Raleway|Roboto" rel="stylesheet">'
-        hx += '   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">'
-        hx += '   <link rel="stylesheet" href="css/app.css">'
-        hx += '   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>'
-        hx += '   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>'
-        hx += '   <script src="js/bootstrapui.js"></script>'
-        hx += '   <script src="js/app.js"></script>'
-        hx += '   <script src="js/views.app.js"></script>'
-        hx += ' </head>'
-        hx += '<body>'
-        hx += '  <div class="container" id="mcontent"></div>'
-        hx += '  <div id="appmodal" class="modal fade" role="dialog"></div>'
-        hx += '  <script>'
-        hx += '    appInit();'
-        hx += '  </script>'
-        hx += '</body>'
-        hx += '</html>'
 
-        self.html = hx
+        self.cssDef = []
+        self.jsDef = []
+
+        self.headTitle = " <head>"
+        self.headTitle += "   <title>" + appName + "</title>"
+        self.headTitle += "   <meta charset=\"utf-8\">"
+        self.headTitle += "   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
+
+        self.css = '   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lato|Oswald|Raleway|Roboto" rel="stylesheet">'
+        self.css += '   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">'
+
+        self.js = '   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>'
+        self.js += '   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>'
+        self.js += '   <script src="https://api.sinhallc.com/bootstrapui/bootstrapui.js"></script>'
+        self.js += '   <script src="js/app.js"></script>'
+        self.js += '   <script src="js/views.js"></script>'
+
+        self.body = '<body>'
+        self.body += '  <div class="container" id="mcontent"></div>'
+        self.body += '  <div id="appmodal" class="modal fade" role="dialog"></div>'
+        self.body += '  <script>'
+        self.body += '    appInit();'
+        self.body += '  </script>'
+        self.body += '</body>'
+
+    def includeCSS(self, cssPath):
+        """
+        Generates an include for the CSS Path defined in cssPath
+        """
+        if cssPath:
+            self.cssDef.append(cssPath)
+
+    def includeJS(self, jsPath):
+        """
+        Generates an include for the JS file defined in jsPath
+        """
+        if jsPath:
+            self.jsDef.append(jsPath)
 
     def getHTMLString(self):
         """
+        Genertes the HTML Page String
         """
-        self.html
+        self.html = '<html lang=\"en\">'
+        self.html += self.headTitle
+        for css in self.cssDef:
+            self.css += '   <link rel="stylesheet" href=' + css + '">'
+
+        self.html += self.css
+
+        for js in self.jsDef:
+            self.js += '   <script src=' + js + '></script>'
+
+        self.html += self.js
+
+        # Add the HTML body
+        self.html += self.body
+
+        # Close the HTML tag
+        self.html += '</html'
+
+        return self.html
 
 
 class UIElement(object):

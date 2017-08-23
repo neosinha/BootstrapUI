@@ -15,6 +15,7 @@ class UIApp(object):
     _appname = None
     _jsFiles = {}
     _html = None
+    _css = None
 
     _staticDir = None
 
@@ -25,21 +26,39 @@ class UIApp(object):
         self._appname = appName
         self._staticDir = staticDir
         self.getFramework()
-        self.addAppJS()
+        self.initTemplate()
         self._html = HtmlFile(appName)
+        self._css = []
 
-    def addAppJS(self):
+    def initTemplate(self):
         """
-        Adds app JS file
+        Initialize Template
         """
 
+        # --- APP JS File
         self._jsFiles['app'] = JSFile('app')
-
         func = self._jsFiles['app'].addJSFunc(name="appInit", params=None)
         func.addConsoleLog("\"Hello word..\"")
 
         func = self._jsFiles['app'].addJSFunc(name="loginView", params=None)
         func.addConsoleLog("\"Login View controller\"")
+
+        # -- View Controller File
+        self._jsFiles['views'] = JSFile('views')
+
+        # --
+
+    def addCSSInclude(self, csspath=None):
+        """
+        Adds a CSS file to the current framework
+        """
+        self._html.includeCSS(csspath)
+
+    def addJSInclude(self, jspath=None):
+        """
+        Adds a JS file to the current framework
+        """
+        self._html.includeJS(jspath)
 
     def addView(self, viewname):
         """
@@ -67,7 +86,17 @@ class UIApp(object):
             print "Generating JS file, %s" % (fw.name)
             fw.write(jfile.toString())
 
+    def writeHTML(self):
+        """
+        Write HTML
+        """
+        idxfile = os.path.join(self._staticDir, "index.html")
+        fw = open(idxfile, 'w')
+        print "Generating Index file, %s" % (fw.name)
+        fw.write(self._html.getHTMLString())
+
     def write(self):
         """
         """
+        self.writeHTML()
         self.writeJS()

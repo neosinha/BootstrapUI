@@ -101,4 +101,6 @@ if __name__ == "__main__":
                             })
     print "Starting UI-HTTP Server on %s:%s" % (str(ipadd), str(portnum))
 
-    UIServer.quickstart(UIServerlet(dbaddress="127.0.0.1", www=staticdir))
+    UIServer.quickstart(
+        UIServerlet(dbaddress="127.0.0.1", www=staticdir),
+        '/', conf)
