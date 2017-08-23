@@ -3,7 +3,7 @@ Created on Aug 21, 2017
 
 @author: nsinha
 '''
-from UIElements import JSFile, JSFunction
+from WebElements import JSFile, JSFunction, HtmlFile
 import os
 
 
@@ -12,16 +12,21 @@ class UIApp(object):
     classdocs
     '''
 
+    _appname = None
     _jsFiles = {}
     _html = None
 
-    staticDir = None
+    _staticDir = None
 
     def __init__(self, appName, staticDir):
         '''
         Constructor
         '''
+        self._appname = appName
+        self._staticDir = staticDir
+        self.getFramework()
         self.addAppJS()
+        self._html = HtmlFile(appName)
 
     def addAppJS(self):
         """
@@ -41,23 +46,28 @@ class UIApp(object):
         Adds an app View
         """
 
+        return ""
+
+    def getFramework(self):
+        """
+        Generates the boilerplate template
+        """
+
     def writeJS(self):
         """
         Write JS files
         """
-        jsdir = os.path.join(self.staticDir, 'js')
-        os.makedirs(jsdir)
+        jsdir = os.path.join(self._staticDir, 'js')
+        # create JS directory if it does not exist
+        if (not os.path.exists(jsdir)):
+            os.makedirs(jsdir)
+
         for jfname, jfile in self._jsFiles.iteritems():
-            fw = open(os.path.join(jsdir, jfname + ".js"), 'w')
+            fw = open(os.path.join(jsdir, ("%s.js" % (jfname))), 'w')
+            print "Generating JS file, %s" % (fw.name)
             fw.write(jfile.toString())
 
     def write(self):
         """
         """
         self.writeJS()
-
-
-if __name__ == "__main__":
-    uiapp = UIApp(appName="Test App",
-                  staticDir="/Users/nsinha/git/BootstrapUI/www")
-    uiapp.write()

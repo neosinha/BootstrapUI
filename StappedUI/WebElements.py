@@ -5,6 +5,8 @@ Created on Aug 21, 2017
 '''
 
 import datetime
+import lxml
+from lxml.html import builder as HTM
 
 
 class JSFile(object):
@@ -132,6 +134,49 @@ class JSClass(object):
     """
     Javascript Class
     """
+
+
+class HtmlFile(object):
+    """
+    """
+
+    html = None
+    body = None
+    head = None
+
+    def __init__(self, appName):
+        """
+        HTML file
+        """
+        hx = '<html lang=\"en\">'
+        hx += " <head>"
+        hx += "   <title>" + appName + "</title>"
+        hx += "   <meta charset=\"utf-8\">"
+        hx += "   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
+        hx += '   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lato|Oswald|Raleway|Roboto" rel="stylesheet">'
+        hx += '   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">'
+        hx += '   <link rel="stylesheet" href="css/app.css">'
+        hx += '   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>'
+        hx += '   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>'
+        hx += '   <script src="js/bootstrapui.js"></script>'
+        hx += '   <script src="js/app.js"></script>'
+        hx += '   <script src="js/views.app.js"></script>'
+        hx += ' </head>'
+        hx += '<body>'
+        hx += '  <div class="container" id="mcontent"></div>'
+        hx += '  <div id="appmodal" class="modal fade" role="dialog"></div>'
+        hx += '  <script>'
+        hx += '    appInit();'
+        hx += '  </script>'
+        hx += '</body>'
+        hx += '</html>'
+
+        self.html = hx
+
+    def getHTMLString(self):
+        """
+        """
+        self.html
 
 
 class UIElement(object):
