@@ -16,6 +16,7 @@ class JSFile(object):
     js = []
     jsvars = []
     jsfuncs = []
+    bodyLines = []
 
     def __init__(self, filename=None):
         """
@@ -23,6 +24,7 @@ class JSFile(object):
         """
         self._fname = filename
         self.jsfuncs = []
+        self.bodyLines = []
 
     def addJSFunc(self, name=None, params=None):
         """
@@ -32,6 +34,25 @@ class JSFile(object):
         self.jsfuncs.append(jfunc)
 
         return jfunc
+
+    def getJSFunc(self, name):
+        """
+        Returns JS Function matching name 
+        + name : 
+        """
+        jf = None
+        for jfunc in self.jsfuncs:
+            if (jfunc.getName() == name):
+                jf = jfunc
+                break
+        return jf
+
+    def addBodyLine(self, line):
+        """
+        Adds a line to the JS file
+        """
+        if (line):
+            self.bodyLines.append(line.strip())
 
     def toString(self):
         """
@@ -44,6 +65,11 @@ class JSFile(object):
         strx += " Generated on: %s\n" % (datetime.datetime.now())
         strx += " \n"
         strx += "*/\n\n"
+
+        for line in self.bodyLines:
+            strx += line + "\n"
+
+        strx += "\n\n"
 
         for jsf in self.jsfuncs:
             strx += "//\n"
@@ -103,6 +129,18 @@ class JSFunction(object):
     def addView(self, viewname=None):
         """
         """
+
+    def getName(self):
+        """
+        Returns the function name
+        """
+        return self._fname
+
+    def getParams(self):
+        """
+        Returns the function parameters
+        """
+        return self._params
 
     def toString(self):
         """
@@ -213,7 +251,7 @@ class HtmlFile(object):
         self.html += self.body
 
         # Close the HTML tag
-        self.html += '</html'
+        self.html += '</html>'
 
         return self.html
 

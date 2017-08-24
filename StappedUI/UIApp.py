@@ -34,7 +34,6 @@ class UIApp(object):
         """
         Initialize Template
         """
-
         # --- APP JS File
         self._jsFiles['app'] = JSFile('app')
         func = self._jsFiles['app'].addJSFunc(name="appInit", params=None)
@@ -45,6 +44,8 @@ class UIApp(object):
 
         # -- View Controller File
         self._jsFiles['views'] = JSFile('views')
+        views = self._jsFiles['views']
+        views.addBodyLine("var ui = new Bootstrap();")
 
         # --
 
@@ -65,7 +66,23 @@ class UIApp(object):
         Adds an app View
         """
 
-        return ""
+        return
+
+    def addHeader(self, headerText=None, location=None):
+        """
+        Generates the header code
+        """
+        header = self._jsFiles['views'].addJSFunc("appNavBar")
+
+        header.addBodyLine(
+            "navbar = ui.navbar(\"navarea\",\"" + headerText + "\")")
+        header.addBodyLine('ui.addSubViewToMain([navbar])')
+
+        if 'function' in location:
+            jsfile = self._jsFiles[location['filename']]
+            jfunc = jsfile.getJSFunc(location['function'])
+
+            jfunc.addBodyLine('appNavBar(); ')
 
     def getFramework(self):
         """
@@ -100,3 +117,11 @@ class UIApp(object):
         """
         self.writeHTML()
         self.writeJS()
+
+    def startServer(self, ipaddress, port, staticDir):
+        """
+        Starts the UI Server
+         + ipaddress: 
+         + port     : 
+         + staticDir: 
+        """
