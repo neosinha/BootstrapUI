@@ -10,6 +10,8 @@ import time
 import json
 import os
 import argparse
+import inspect
+import re
 
 
 class UIServerlet(object):
@@ -64,6 +66,21 @@ class UIServerlet(object):
 
         return json.dumps(resp)
 
+    @UIServer.expose
+    def inspect(self):
+        """
+        """
+        apis = {}
+        dec_pattern = re.compile('@UIServer')
+        for name, mobj in inspect.getmembers(self):
+            if inspect.ismethod(mobj):
+                sourcelines = inspect.getsourcelines(mobj)
+                decoratorLine = sourcelines[0][0]
+                dec_match = dec_pattern.search(decoratorLine)
+                if dec_match:
+                    apis[name] = {'module': mobj,
+                                  'args': inspect.getargspec(mobj).args
+                                  }
 
 if __name__ == "__main__":
     # construct the argument parse and parse the arguments
