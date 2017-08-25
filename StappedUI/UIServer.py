@@ -78,9 +78,17 @@ class UIServerlet(object):
                 decoratorLine = sourcelines[0][0]
                 dec_match = dec_pattern.search(decoratorLine)
                 if dec_match:
+                    arglist = []
+                    for argel in inspect.getargspec(mobj).args:
+                        if argel.strip() != 'self':
+                            arglist.append(argel)
+
                     apis[name] = {'module': mobj,
-                                  'args': inspect.getargspec(mobj).args
+                                  'args': arglist
                                   }
+
+        for name, api in apis.iteritems():
+            print "Method: %s (%s)" % (name, ','.join(api['args']))
 
 if __name__ == "__main__":
     # construct the argument parse and parse the arguments
