@@ -75,7 +75,15 @@ var Bootstrap  = function () {
 	this.button = function (id, name, onclick) {
 		el = this.createElement('button', id);
 		el.setAttribute('onclick', onclick);
+		
+		if (typeof name == "string") {
+			el.innerHTML = name; 
+		} else {
+			el.appendChild(name);
+		}
+		return el;
 	};
+	
 	
 	this.createPanels = function (id, panelArr) {
 		

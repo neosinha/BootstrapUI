@@ -9,11 +9,18 @@ function appNavBar() {
 
 function loadPanels() {
 	px = new Array(); 
-	px.push({'type': 'default', 'heading': 'Panel1', 'content': 'Panel1 Content'});
+	h3 = ui.h3('id1', 'Good header');
+	b = ui.button('id2', 'Click Me', 'clicker();');
+	
+	px.push({'type': 'default', 'heading': 'Panel1', 'content': b });
 	
 	panel = ui.createPanels('uipanel', px);
-	
+
 	return panel;
+}
+
+function clicker() {
+	alert('Clicked..');
 }
 
 
