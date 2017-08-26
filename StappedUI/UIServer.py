@@ -67,7 +67,7 @@ class UIServerlet(object):
         return json.dumps(resp)
 
     @UIServer.expose
-    def inspect(self):
+    def restApis(self):
         """
         """
         apis = {}
@@ -86,9 +86,15 @@ class UIServerlet(object):
                     apis[name] = {'module': mobj,
                                   'args': arglist
                                   }
+        strxx = "%r" % (self.__class__)
+        strx = ""
+        strx += "\nvar UIServer" + " = function() {"
+        for apiname, apiobj in apis.iteritems():
+            strx += "\n\tthis." + apiname + ""
+            print "Api: %s, %s" % (apiname, apiobj['args'])
+        strx += "\n}; "
 
-        for name, api in apis.iteritems():
-            print "Method: %s (%s)" % (name, ','.join(api['args']))
+        return strx
 
 if __name__ == "__main__":
     # construct the argument parse and parse the arguments
