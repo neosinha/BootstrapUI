@@ -115,6 +115,9 @@ class UIApp(object):
     def write(self):
         """
         """
+        if (not os.path.exists(self._staticDir)): 
+            os.makedirs(self._staticDir)
+        
         self.writeHTML()
         self.writeJS()
 

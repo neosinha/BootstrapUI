@@ -19,7 +19,7 @@ class TestApp(object):
 
 if __name__ == "__main__":
     uiapp = UIApp(appName="Test App",
-                  staticDir="/Users/nsinha/git/BootstrapUI/www")
+                  staticDir="/Users/navendusinha/BootstrapUi/www")
 
     uiapp.addHeader(headerText="App1",
                     location={'filename': 'app',

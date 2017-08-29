@@ -67,7 +67,17 @@ class UIServerlet(object):
         return json.dumps(resp)
 
     @UIServer.expose
-    def restApis(self):
+    def echo2(self, param1, param2, param3):
+        """
+        Test echo function
+        """
+        resp = {"el1": param1, "el2": param2}
+
+        return json.dumps(resp)
+
+
+    @UIServer.expose
+    def restapis(self):
         """
         """
         apis = {}
@@ -87,13 +97,54 @@ class UIServerlet(object):
                                   'args': arglist
                                   }
         strxx = "%r" % (self.__class__)
+        classname = "UIServer"
         strx = ""
-        strx += "\nvar UIServer" + " = function() {"
+        strx +="\nvar serverUrl=\"http://127.0.0.1:6500\";\n\n " 
+        strx +="\n/**"
+        strx +="\n* RestAPIs defined by "+classname + ""
+        strx +="\n* @class"
+        strx +="\n* "
+        strx += "\n**/"
+        strx += "\nvar "+ classname + " = function() {"
         for apiname, apiobj in apis.iteritems():
-            strx += "\n\tthis." + apiname + ""
-            print "Api: %s, %s" % (apiname, apiobj['args'])
+            strx += "\n\n"
+            strx += "\n\t/**"
+            doclines = inspect.getdoc(apiobj['module']).split('\n')
+            apiobj['args'].append('callback')
+            
+            for docst in doclines:
+                strx += "\n\t* " + docst
+            strx += "\n\t* @method"
+            strx += "\n\t* @memberof "+ classname
+            for p in apiobj['args']:
+                if not p.startswith('self'):
+                    strx += "\n\t* @param "+p + " - Parameter for "+p
+            strx += "\n\t*"
+            strx += "\n\t**/"
+            strx += "\n\tthis." + apiname + " = function("
+            pcount = 0
+            for p in apiobj['args']:
+                if not p.startswith('self'):
+                    if pcount:
+                        strx += ", "
+                    strx += p; 
+                    pcount = pcount + 1
+                
+            strx += ") {\n"
+            strx += "\n\n"
+            strx += "\n\t}\n"    
         strx += "\n}; "
 
+        jsrest = os.path.join(self.www, 'js')
+        if not os.path.exists(jsrest): 
+            os.makedirs(jsrest)
+        
+        jsfile = os.path.join(jsrest, 'resetapi.js')
+        f = file(jsfile, 'w')
+        f.write(strx)
+        f.close()
+        
+        
         return strx
 
 if __name__ == "__main__":
@@ -105,16 +156,12 @@ if __name__ == "__main__":
     ap.add_argument("-i", "--ipaddress", required=True,
                     help="IP Address to start HTTPServer")
 
-    ap.add_argument("-d", "--mongo", required=True,
-                    help="IP Address for MongoDB server")
-
     ap.add_argument("-w", "--staticdir", required=True,
                     help="Static directory which contains the WWW folder")
 
     args = vars(ap.parse_args())
     portnum = int(args["port"])
     ipadd = args["ipaddress"]
-    dbadd = args["mongo"]
     staticdir = args["staticdir"]
 
     conf = {
